@@ -1,9 +1,12 @@
 docker-transmission
 ===================
 
-Transmission Daemon Docker Container
+Transmission daemon running in a container. The default paths have been altered to:
+ * /transmission/download
+ * /transmission/incomplete
+ * /transmission/torrents
+ * /transmission/watch
+ * /transmission/settings
 
-Application container, don't forget to specify a password for `transmission` account and local directory for the downloads:
-
-    docker run -p 12345:12345 -p 12345:12345/udp -p 127.0.0.1:9091:9091 -e ADMIN_PASS=password -v /var/lib/transmission-daemon/downloads:/local/dir --name APP elventear/transmission
-
+Transmission runs as root; to run as a different user, share the host's /etc/passwd with this container & pass the --user flag to docker run:
+    docker run -v /etc/passwd:/etc/passwd --user host_tranmission_user dgholz/transmission-daemon 

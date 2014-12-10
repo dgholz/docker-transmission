@@ -1,28 +1,32 @@
-FROM elventear/supervisord:latest
+FROM debian:jessie
 
-MAINTAINER Pepe Barbe <dev@antropoide.net>
+MAINTAINER Daniel Holz <dgholz@gmail.com>
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y software-properties-common 
+RUN apt-get update
+RUN apt-get install -y transmission-daemon 
+RUN mkdir /transmission
+RUN chmod 1777 /transmission
 
-RUN add-apt-repository -y ppa:transmissionbt/ppa && \
-    apt-get update && \
-    apt-get install -y transmission-daemon
+ENV TRANSMISSION_HOME /transmission/config
 
-ADD files/transmission-daemon /etc/transmission-daemon
-ADD files/run_transmission.sh /run_transmission.sh
+# uPnP portmap ports
+#   announce
+EXPOSE 1900
+#   connect
+EXPOSE 5000
 
-RUN mkdir -p /var/lib/transmission-daemon/incomplete && \
-    chown -R debian-transmission: /var/lib/transmission-daemon && \
-    chown -R debian-transmission: /etc/transmission-daemon    
-
-VOLUME ["/var/lib/transmission-daemon/downloads"]
-VOLUME ["/var/lib/transmission-daemon/incomplete"]
-
+# Transmission ports
+#   HTTP interface
 EXPOSE 9091
-EXPOSE 12345
+#   BitTorrent
+EXPOSE 51413
 
 USER debian-transmission
 
-CMD ["/run_transmission.sh"]
+RUN mkdir /transmission/download
+RUN mkdir /transmission/watch
+RUN mkdir /transmission/incomplete
+RUN mkdir /transmission/config
+
+CMD [ "--watch-dir", "/transmission/watch", "--encryption-preferred", "--foreground", "--config-dir", "/transmission/config", "--global-seedratio", "1", "--incomplete-dir", "/transmission/incomplete", "--portmap", "--dht", "--no-auth", "--download-dir", "/tranmission/download" ]
+ENTRYPOINT ["/usr/bin/transmission-daemon"]
