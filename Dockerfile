@@ -13,8 +13,6 @@ ENV TRANSMISSION_HOME /transmission/config
 #   HTTP interface
 EXPOSE 9091
 
-USER debian-transmission
-
 RUN mkdir /transmission/download
 RUN mkdir /transmission/watch
 RUN mkdir /transmission/incomplete
