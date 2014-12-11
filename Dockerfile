@@ -9,17 +9,9 @@ RUN chmod 1777 /transmission
 
 ENV TRANSMISSION_HOME /transmission/config
 
-# uPnP portmap ports
-#   announce
-EXPOSE 1900
-#   connect
-EXPOSE 5000
-
 # Transmission ports
 #   HTTP interface
 EXPOSE 9091
-#   BitTorrent
-EXPOSE 51413
 
 USER debian-transmission
 
