@@ -70,6 +70,6 @@ How can I see the output from transmission-daemon?
 
 You can attach to a running container:
 
-    docker attach --sig-proxy=false $(docker ps | grep transmi | cut -f1 -d' '')
+    docker attach --sig-proxy=false $(docker ps | grep transmi | cut -f1 -d' ')
 
 Then Ctrl-C to detach
