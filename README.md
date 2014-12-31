@@ -2,12 +2,19 @@ docker-transmission
 ===================
 
 Transmission daemon running in a container. The default paths have been altered to:
+
  * /transmission/download
  * /transmission/incomplete
  * /transmission/watch
  * /transmission/config
 
-`transmission-daemon` runs as root, with the HTTP RPC interface listening on TCP port 9091, and the BitTorrent transfer port listening on TCP & UDP 51413. The HTTP RPC interface is configured to not use authentication, and allows connections from all private IP ranges (127.0.0.0/8, 10.0.0.0/8, 192.168.0.0/16, 169.254.0.0/16, 172.16.0.0/22).
+`transmission-daemon` runs as `root`, with the HTTP RPC interface listening on TCP port `9091`, and the BitTorrent transfer port listening on TCP & UDP `51413`. The HTTP RPC interface is configured to not use authentication, and allows connections from all private IP ranges:
+
+ * `127.0.0.0/8`
+ * `10.0.0.0/8`
+ * `192.168.0.0/16`
+ * `169.254.0.0/16`
+ * `172.16.0.0/22`
 
 Quick-start
 -----------
