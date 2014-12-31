@@ -38,7 +38,7 @@ Run the container as that user. You must share the host's /etc/passwd with this 
 I set `portmap: true` in config but the port is still closed! What gives?
 =========================================================================
 
-Transmission sends out a NAT-PMP (uPNP) packet to your router, asking it to forward connection to some port back to the same port at the address Tranmission is running on. Docker created a private internal network for your container, and NATs the traffic through the host Docker is running on. DOcker don't understand the uPNP packet, and isn't allowed to forward it, so it gets dropped.
+Transmission sends out a NAT-PMP (uPNP) packet to your router, asking it to forward connection to some port back to the same port at the address Tranmission is running on. Docker created a private internal network for your container, and NATs the traffic through the host Docker is running on. Docker doesn't understand the uPNP packet, and isn't allowed to forward it, so it gets dropped.
 
 Solutions:
   1. use `--net=host` so Docker does not set up NATting of the traffic from the container
