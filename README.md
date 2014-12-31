@@ -22,6 +22,13 @@ I want to run the HTTP RPC interface on a different port
 Easy! Just change the port mapping given to `docker run`; e.g. to listen on port 8080:
     docker run --port 8080:9091 dgholz/docker-transmission
 
+I want Transmission to use a different port for BitTorrent
+==========================================================
+
+A bit tougher; run the image and map the new port from host to the container, and configure transmission to use the new port:
+    docker run --port 12345:12345 dgholz/docker-transmission
+Then configure Transmission to use the new port either via its web interface, or in a config file (see below).
+
 I want the downloaded files to be owned by a different user
 ===========================================================
 
