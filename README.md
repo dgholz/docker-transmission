@@ -12,7 +12,7 @@ Transmission daemon running in a container. The default paths have been altered 
 Quick-start
 ===========
 
-    docker run --daemon --volume /where/to/save/downloads:/transmission/download --port 9091:9091 --port 51413:51413 --port 51413:51413/udp dgholz/docker-transmission
+    docker run --daemon --volume /where/to/save/downloads:/transmission/download --port 9091:9091 --port 51413:51413 --port 51413:51413/udp --name transmission dgholz/docker-transmission
 
 Then open http://docker_host:9091/transmission/web/ in a browser.
 
