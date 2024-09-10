@@ -13,8 +13,13 @@ jobs:
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ github.repository }}
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }}
-          tags: ${{ github.repository }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          annotations: ${{ steps.meta.outputs.annotations }}
