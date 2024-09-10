@@ -8,7 +8,7 @@ RUN apt-get update --quiet=2 && \
     && \
     apt-get clean && rm -rf /var/lib/apt/lists
 
-ENV TRANSMISSION_HOME /transmission/config
+ENV TRANSMISSION_HOME=/transmission/config
 # Transmission HTTP interface
 EXPOSE 9091
 
