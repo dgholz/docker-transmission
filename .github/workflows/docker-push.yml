@@ -19,6 +19,9 @@ jobs:
           images: ${{ github.repository }}
       - name: Build and push
         uses: docker/build-push-action@v6
+        env:
+          DOCKER_BUILD_RECORD_UPLOAD: false
+          DOCKER_BUILD_SUMMARY: false
         with:
           push: ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }}
           tags: ${{ steps.meta.outputs.tags }}
