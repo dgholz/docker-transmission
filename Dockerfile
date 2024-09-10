@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:bookworm-slim
 
 RUN ["/bin/bash", "-c", "mkdir /transmission/{,download,watch,incomplete,config}"]
 
