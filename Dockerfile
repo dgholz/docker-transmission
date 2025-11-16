@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 RUN ["/bin/bash", "-c", "mkdir /transmission/{,download,watch,incomplete,config}"]
 
